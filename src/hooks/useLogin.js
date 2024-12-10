@@ -30,11 +30,10 @@ const useLogin = () => {
     // Caso a validação esteja ok, inicia o processo de login
     setIsLoading(true);
     try {
-      const resposta = await instancia.Login(cpf, senha);
-      console.log(resposta);
+      const resposta = await instancia.login(cpf, senha);
       setIsLoading(false);
-      if (resposta == true) {
-        console.log('cai aqui');
+      if (resposta.success) {
+        
         return true;
       } else {
         return false;

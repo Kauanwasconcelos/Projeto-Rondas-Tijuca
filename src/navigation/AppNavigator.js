@@ -43,7 +43,7 @@ export default function AppNavigator() {
             <Stack.Group screenOptions={{
               headerShown: false
             }}>
-              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Login" component={HomeScreen} />
               <Stack.Screen name="Home" component={HomeScreen} />
             </Stack.Group>
           </Stack.Navigator>
