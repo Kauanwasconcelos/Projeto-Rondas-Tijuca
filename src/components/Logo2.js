@@ -1,6 +1,6 @@
 // components/Logo.js
 import React from 'react';
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 import styled from 'styled-components/native';
 
 // Estilo para a logo
@@ -13,9 +13,9 @@ const LogoContainer = styled.View`
 const Logo2 = () => {
   return (
     <LogoContainer>
-      <Image 
-        source={require('../../assets/img/logotijuca2.png')}  // Substitua com o caminho correto da sua logo
-        style={{ width: '100%', height: '100%' }}
+      <Image
+        source={require('../../assets/img/logotijuca2.png')} // Substitua com o caminho correto da sua logo
+        style={{width: '100%', height: '100%'}}
         resizeMode="contain"
       />
     </LogoContainer>

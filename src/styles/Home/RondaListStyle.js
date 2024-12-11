@@ -46,7 +46,7 @@ export const B2 = styled.TouchableOpacity`
   width: 13%;
   height: 70%;
   border-radius: 10px;
-  background-color: #17BF52;
+  background-color: #17bf52;
   margin: 20px;
 `;
 

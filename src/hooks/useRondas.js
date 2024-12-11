@@ -1,6 +1,4 @@
-
-import axios from "axios";
-
+import axios from 'axios';
 
 const reqData = async () => {
   try {
@@ -9,7 +7,6 @@ const reqData = async () => {
     );
     return resposta.data;
   } catch (e) {
-
     console.log('Error fetching data: ', e);
   }
 };

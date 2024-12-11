@@ -1,0 +1,10 @@
+{
+    "name": "rondaStatus",
+    "properties": {
+      "_id": "int",
+      "status": "int"
+    },
+    "primaryKey": "_id"
+  }
+
+  

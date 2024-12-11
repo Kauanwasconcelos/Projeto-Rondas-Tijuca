@@ -27,13 +27,11 @@ const useLogin = () => {
       return;
     }
 
-    // Caso a validação esteja ok, inicia o processo de login
     setIsLoading(true);
     try {
       const resposta = await instancia.login(cpf, senha);
       setIsLoading(false);
       if (resposta.success) {
-        
         return true;
       } else {
         return false;
