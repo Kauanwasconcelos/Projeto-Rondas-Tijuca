@@ -1,15 +1,15 @@
 const lerRondaAtual = async realm => {
   let ronda = await realm.objectForPrimaryKey('rondaStatus', 1);
-  if (ronda == undefined) {
+  // const rondaRealmVerify = typeof(ronda)
+  console.log(ronda)
+  if (ronda === null) {
     realm.write(async () => {
       console.log('caindo aqui');
       const write = await realm.create('rondaStatus', {
         _id: 1,
         status: 0,
       });
-      console.log(write);
-      console.log('teste');
-      return ronda.status;
+      lerRondaAtual()
     });
   } else {
     return ronda.status;

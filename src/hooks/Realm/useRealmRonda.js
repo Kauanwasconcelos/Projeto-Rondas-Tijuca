@@ -12,13 +12,10 @@ const defineRondaAtual = async (realm, idRonda) => {
       console.log(write);
       console.log('teste');
       ronda.status = idRonda;
-      setrAtual(ronda.status);
     });
   } else {
     realm.write(() => {
       ronda.status = idRonda;
-      setrAtual(ronda.status);
-      console.log(ronda.status);
     });
   }
 };

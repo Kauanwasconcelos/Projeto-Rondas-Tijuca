@@ -1,5 +1,5 @@
 // screens/HomeScreen.js
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import useRondas from '../hooks/useRondas';
 import {
   ListaView,
@@ -24,6 +24,9 @@ import ModalComponent from '../components/home/ModalComponent';
 import useInitRealm from '../hooks/Realm/useInitRealm';
 import useRealmRonda from '../hooks/Realm/useRealmRonda';
 import useDefineRonda from '../hooks/Realm/useDefineRonda';
+import lerRondaAtual from '../hooks/Realm/useDefineRonda';
+import { Button } from 'react-native-paper';
+import { TouchableOpacity , Text} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({navigation}) => {
@@ -37,8 +40,29 @@ const HomeScreen = ({navigation}) => {
     setReload(!reload);
     setModalVisible(null);
   };
+
+useEffect(()=>{
+  console.log("Fui carregado no useeffect")
+
+  const defineRondaAtual = async () => {
+    const rondaAtual = await useDefineRonda(realm);
+    console.log(rondaAtual + "rondaAtual");
+    setRondaAtual(rondaAtual);
+  };
+  defineRondaAtual();
+
+
+})
+
+
+
+
   useFocusEffect(
     React.useCallback(() => {
+      console.log("Fui Carregado no focus")
+
+
+
       const carregaRonda = async () => {
         try {
           const respostaHookRondas = await useRondas();
@@ -53,13 +77,6 @@ const HomeScreen = ({navigation}) => {
         const iniciaRealm = await useInitRealm();
         setRealm(iniciaRealm);
       };
-
-      const defineRondaAtual = async () => {
-        const rondaAtual = await useDefineRonda(realm);
-        console.log(rondaAtual);
-        setRondaAtual(rondaAtual);
-      };
-      defineRondaAtual();
       initRealm();
       carregaRonda();
     }, [reload]),
@@ -68,7 +85,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <>
       <HomeContainer>
-        <Header name="VIGIA" />
+        <Header name="VIGIA"  />
         <ListaView>
           <List
             data={rondas}
@@ -98,7 +115,7 @@ const HomeScreen = ({navigation}) => {
                     isVisible={true}
                     onClose={onClose}
                     defineRondaAtual={useRealmRonda}
-                    prop={[item.idRonda, rondaAtual]}
+                    prop={[item.idRonda, rondaAtual, realm]}
                   />
                 )}
               </BView>
@@ -108,6 +125,7 @@ const HomeScreen = ({navigation}) => {
             }}
           />
         </ListaView>
+
       </HomeContainer>
     </>
   );

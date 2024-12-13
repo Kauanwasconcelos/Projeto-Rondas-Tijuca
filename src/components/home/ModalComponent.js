@@ -16,32 +16,34 @@ import stopRonda from '../../hooks/stopRonda';
 import {ToastAndroid} from 'react-native';
 
 const ModalComponent = ({isVisible, onClose, prop, defineRondaAtual}) => {
-  const isModalA = prop[1] !== 0;
-
+  console.log(prop)
+  var isModalA = prop[1] == 0;
   const iniciaRonda = async (idRonda, idUsuario) => {
+    console.log("TO INICIADO")
     const playRonda = await initRonda(idRonda, idUsuario);
     console.log(playRonda);
     if (playRonda === true) {
       ToastAndroid.show('Ronda iniciada com sucesso', ToastAndroid.SHORT);
-      defineRondaAtual(prop[1]);
+      defineRondaAtual(prop[2], prop[0]);
       onClose();
     } else {
       ToastAndroid.show('Ronda já iniciada', ToastAndroid.SHORT);
-      defineRondaAtual(prop[1]);
+      defineRondaAtual(prop[2], prop[0]);
       onClose();
     }
   };
 
-  const encerraRonda = async (idRonda) => {
-        const pararRonda = await stopRonda(idRonda);
-        console.log(pararRonda);
+  const encerraRonda = async () => {
+        
+        const pararRonda = await stopRonda(prop[1]);
+        
         if (pararRonda === true) {
           ToastAndroid.show('Ronda encerrada com sucesso', ToastAndroid.SHORT);
-          defineRondaAtual(0);
+          defineRondaAtual(prop[2],0);
           onClose();
         }}
 
-  console.log(prop[0]);
+  
   return (
     <Modal
       isVisible={isVisible}
@@ -53,7 +55,6 @@ const ModalComponent = ({isVisible, onClose, prop, defineRondaAtual}) => {
       <CenteredView>
         <ModalView isModalA={isModalA}>
           <Title isModalA={isModalA}>
-            {isModalA ? 'Quer iniciar a ronda?' : 'Quer encerrar a ronda?'}
           </Title>
           <Paragrafo>
             {isModalA
@@ -63,7 +64,7 @@ const ModalComponent = ({isVisible, onClose, prop, defineRondaAtual}) => {
           <SimButton
             isModalA={isModalA}
             onPress={() =>
-              isModalA ? iniciaRonda(prop[0], 1) : encerraRonda(prop[0])
+              isModalA ? iniciaRonda(prop[0], 1) : encerraRonda()
             }>
             <SimButtonText>Sim</SimButtonText>
           </SimButton>
