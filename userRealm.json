@@ -1,0 +1,14 @@
+{
+    "name": "rondaStatus",
+    "properties": {
+      "idUsuario": "int",
+      "status": "int",
+      "nomedeUsuario": "string",
+      "permissao": "string",
+      "token": "string"
+
+    },
+    "primaryKey": "idUsuario"
+  }
+
+  

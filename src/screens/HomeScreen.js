@@ -85,7 +85,7 @@ useEffect(()=>{
   return (
     <>
       <HomeContainer>
-        <Header name="VIGIA"  />
+        <Header name="VIGIA"  setReload={setReload} reload={reload}/>
         <ListaView>
           <List
             data={rondas}
