@@ -1,6 +1,5 @@
-// hooks/useLogin.js
-import {useState} from 'react';
-import {validarCpf, validarSenha} from '../utils/validate'; // Importando as validações
+import { useState } from 'react';
+import { validarCpf, validarSenha } from '../utils/validate'; // Importando as validações
 import User from '../api/User';
 
 const useLogin = () => {
@@ -13,14 +12,13 @@ const useLogin = () => {
   const instancia = new User();
 
   const requestLogin = async () => {
+   
     setErrorCpf('');
     setErrorSenha('');
 
-    // Validação dos campos de CPF e Senha
     const erroCpf = validarCpf(cpf);
     const erroSenha = validarSenha(senha);
 
-    // Se houver erro, exibe a mensagem e não continua
     if (erroCpf || erroSenha) {
       setErrorCpf(erroCpf);
       setErrorSenha(erroSenha);
@@ -29,17 +27,13 @@ const useLogin = () => {
 
     setIsLoading(true);
     try {
-      const resposta = await instancia.login(cpf, senha);
+      const resposta = await instancia.Login(cpf, senha);
+      console.log("Login bem-sucedido:", resposta);
       setIsLoading(false);
-      if (resposta.success) {
-        return true;
-      } else {
-        return false;
-      }
     } catch (err) {
       setIsLoading(false);
-      setErrorCpf('Erro ao fazer login. Tente novamente.');
-      console.error('Erro:', err);
+      setErrorCpf("Erro ao fazer login. Tente novamente.");
+      console.error("Erro:", err);
     }
   };
 
